@@ -9,6 +9,8 @@ Takes generated coefficient file from TIBQ.exe and outputs TI I2C format
 This script intended for TLV320AIC32xx DAC PRB25 - generates Biquads B through F only
 See pg.44-45 of Applications Resource Guide : http://www.ti.com/lit/ug/slau306a/slau306a.pdf
 
+"lazy man's awk"
+
 """
 import array
 
