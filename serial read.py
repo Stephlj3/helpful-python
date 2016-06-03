@@ -5,7 +5,7 @@ Created on Fri Nov 13 13:53:17 2015
 @author: Steph
 
 This script creates a serial port on windows machines "com" at the 
-specified baud rate.  It will loop over a command send to the port 
+specified baud rate.  It will loop over a command sent to the port 
 and print to a text file the full port response.  It also tracks
 the time between writes.
 
