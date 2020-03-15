@@ -104,62 +104,82 @@ E96_list = [1.00, 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24, 1.27, 1.
 86600000, 88700000, 90900000, 93100000, 95300000, 97600000]
 
 
+"""
+Binary search for two closest values to target value in a sorted array.
+
+Note: Array values must be sorted in ascending order.
+"""
+def find_two_closest_values(values, value):
+    # binary search
+    a, b = 0, len(values) - 1
+
+    while b - a > 1:
+        midpoint = a + (b - a) // 2
+
+        if value > values[midpoint]:
+            a = midpoint
+        else:
+            b = midpoint
+
+    return (values[a], values[b])
+
+# run resistor finder
 try:
     tolerance = int(input("Enter Tolerance required (1, 5, 10): "))
 
     if tolerance == 1:
         num = float(input("Enter 1% Resistor Value: "))
-        user_input = min(E96_list, key=lambda x:abs(x-num))
-        index = E96_list.index(min(E96_list, key=lambda x:abs(x-num)))
-
-        diff = round(user_input - num,2)
-        if diff == 0:
-            print("Perfect match to 1% E96 value = ", user_input)
-        elif diff < 0:
-            next_closest = E96_list[index + 1]
-            print("Closest 1% E96 value = {} and difference is {}".format(user_input, round(user_input-num,2)))
-            print("Next closest 1% E96 value = {} and difference is {}".format(next_closest, round(next_closest-num,2)))
-        elif diff > 0:
-            next_closest = E96_list[index - 1]
-            print("Closest 1% E96 value = {} and difference is {}".format(user_input, round(user_input-num,2)))
-            print("Next closest 1% E96 value = {} and difference is {}".format(next_closest, round(next_closest-num,2)))
+        if 0 < num <= 97600000:
+            E1, E2 = find_two_closest_values(E96_list, num)
+            if num == E1:
+                print("Perfect match to 1% E96 value = ", E1)
+            elif num == E2:
+                print("Perfect match to 1% E96 value = ", E2)
+            elif (num - E1) > (E2 - num):
+                print("closest 1% E96 value = {}, difference = {}".format(E2, round(E2-num,2)))
+                print("next closest 1% E96 value = {}, difference = {}".format(E1, round(num-E1,2)))
+            else:
+                print("closest 1% E96 value = {}, difference = {}".format(E1, round(num-E1,2)))
+                print("next closest 1% E96 value = {}, difference = {}".format(E2, round(E2-num,2)))
+        else:
+            print("resistor value out of range.")
 
     elif tolerance == 5:
         num = float(input("Enter 5% Resistor Value: "))
-        user_input = min(E24_list, key=lambda x:abs(x-num))
-        index = E24_list.index(min(E24_list, key=lambda x:abs(x-num)))
-
-        diff = round(user_input - num,2)
-        if diff == 0:
-            print("Perfect match to 5% E24 value = ", user_input)
-        elif diff < 0:
-            next_closest = E24_list[index + 1]
-            print("Closest 5% E24 value = {} and difference is {}".format(user_input, round(user_input-num,2)))
-            print("Next closest 5% E24 value = {} and difference is {}".format(next_closest, round(next_closest-num,2)))
-        elif diff > 0:
-            next_closest = E24_list[index - 1]
-            print("Closest 5% E24 value = {} and difference is {}".format(user_input, round(user_input-num,2)))
-            print("Next closest 5% E24 value = {} and difference is {}".format(next_closest, round(next_closest-num,2)))
+        if 0 < num <= 1000000000:
+            E1, E2 = find_two_closest_values(E24_list, num)
+            if num == E1:
+                print("Perfect match to 5% E24 value = ", E1)
+            elif num == E2:
+                print("Perfect match to 5% E24 value = ", E2)
+            elif (num - E1) > (E2 - num):
+                print("Closest 5% E24 value = {}, difference = {}".format(E2, round(E2-num,2)))
+                print("Next closest 5% E24 value = {}, difference = {}".format(E1, round(num-E1,2)))
+            else:
+                print("Closest 5% E24 value = {}, difference = {}".format(E1, round(num-E1,2)))
+                print("Next closest 5% E24 value = {}, difference = {}".format(E2, round(E2-num,2)))
+        else:
+            print("resistor value out of range.")
 
     elif tolerance == 10:
         num = float(input("Enter 10% Resistor Value: "))
-        user_input = min(E12_list, key=lambda x:abs(x-num))
-        index = E12_list.index(min(E12_list, key=lambda x:abs(x-num)))
-
-        diff = round(user_input - num,2)
-        if diff == 0:
-            print("Perfect match to 10% E12 value = ", user_input)
-        elif diff < 0:
-            next_closest = E12_list[index + 1]
-            print("Closest 10% E12 value = {} and difference is {}".format(user_input, round(user_input-num,2)))
-            print("Next closest 10% E12 value = {} and difference is {}".format(next_closest, round(next_closest-num,2)))
-        elif diff > 0:
-            next_closest = E12_list[index - 1]
-            print("Closest 10% E12 value = {} and difference is {}".format(user_input, round(user_input-num,2)))
-            print("Next closest 10% E12 value = {} and difference is {}".format(next_closest, round(next_closest-num,2)))
+        if 0 < num <= 820000000:
+            E1, E2 = find_two_closest_values(E12_list, num)
+            if num == E1:
+                print("Perfect match to 10% E12 value = ", E1)
+            elif num == E2:
+                print("Perfect match to 10% E12 value = ", E2)
+            elif (num - E1) > (E2 - num):
+                print("Closest 10% E12 value = {}, difference = {}".format(E2, round(E2-num,2)))
+                print("Next closest 10% E12 value = {}, difference = {}".format(E1, round(num-E1,2)))
+            else:
+                print("Closest 10% E12 value = {}, difference = {}".format(E1, round(num-E1,2)))
+                print("Next closest 10% E12 value = {}, difference = {}".format(E2, round(E2-num,2)))
+        else:
+            print("resistor value out of range.")
 
     else :
-        print("{} is not an accepted tolerance value".format(tolerance))
+        print("%s is not an accepted tolerance value" % (tolerance))
 
 except (SyntaxError, ValueError):
     print("Invalid input. Exiting.")
