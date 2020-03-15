@@ -108,7 +108,6 @@ try:
     tolerance = int(input("Enter Tolerance required (1, 5, 10): "))
 
     if tolerance == 1:
-
         num = float(input("Enter 1% Resistor Value: "))
         user_input = min(E96_list, key=lambda x:abs(x-num))
         index = E96_list.index(min(E96_list, key=lambda x:abs(x-num)))
@@ -160,7 +159,7 @@ try:
             print("Next closest 10% E12 value = {} and difference is {}".format(next_closest, round(next_closest-num,2)))
 
     else :
-        print("%s is not an accepted tolerance value" % (tolerance))
+        print("{} is not an accepted tolerance value".format(tolerance))
 
 except (SyntaxError, ValueError):
     print("Invalid input. Exiting.")
